@@ -1,0 +1,127 @@
+// Source: https://github.com/eldritch-theme/fastfetch/tree/master
+
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "kitty-direct",
+    "source": "~/.config/fastfetch/anime_girl_3.png",
+    "padding": {
+      "right": 0,
+      "top": 1,
+    },
+  },
+  "general": {
+    "multithreading": true,
+  },
+  "display": {
+    "separator": "➜   ",
+  },
+  "modules": [
+    "break",
+    {
+      "type": "custom",
+      "format": "┌───────────────────────────── System Information ─────────────────────────────┐", // `\u001b` is `\033`, or `\e`
+    },
+    "break",
+    {
+      "key": "    󰘵 OS           ",
+      "keyColor": "magenta",
+      "type": "os",
+    },
+    {
+      "key": "    󰌢 Machine      ",
+      "keyColor": "cyan",
+      "type": "host",
+    },
+    {
+      "key": "     Kernel       ",
+      "keyColor": "blue",
+      "type": "kernel",
+    },
+    {
+      "key": "    󰅐 Uptime       ",
+      "keyColor": "green",
+      "type": "uptime",
+    },
+    {
+      "key": "     Packages     ",
+      "keyColor": "red",
+      "type": "packages",
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": " ────────────────────────────── Wayland Information ─────────────────────────── ", // `\u001b` is `\033`, or `\e`
+    },
+    "break",
+    {
+      "key": "     WM           ",
+      "keyColor": "magenta",
+      "type": "wm",
+    },
+    {
+      "key": "    󰚗 DE           ",
+      "keyColor": "red",
+      "type": "de",
+    },
+    {
+      "key": "     Shell        ",
+      "keyColor": "green",
+      "type": "shell",
+    },
+    {
+      "key": "     Terminal     ",
+      "keyColor": "cyan",
+      "type": "terminal",
+    },
+    {
+      "key": "     Theme        ",
+      "keyColor": "yellow",
+      "type": "terminaltheme",
+    },
+    {
+      "key": "     Font         ",
+      "keyColor": "blue",
+      "type": "terminalfont",
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": " ────────────────────────────── Hardware Information ────────────────────────── ", // `\u001b` is `\033`, or `\e`
+    },
+    "break",
+    {
+      "key": "     Display      ",
+      "keyColor": "Red",
+      "type": "display",
+    },
+    {
+      "key": "    󰻠 CPU          ",
+      "keyColor": "green",
+      "type": "cpu",
+    },
+    {
+      "key": "    󰍛 GPU          ",
+      "keyColor": "cyan",
+      "type": "gpu",
+    },
+    {
+      "key": "    󰑭 Memory       ",
+      "keyColor": "blue",
+      "type": "memory",
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "└──────────────────────────────────────────────────────────────────────────────┘", // `\u001b` is `\033`, or `\e`
+    },
+    {
+      "type": "colors",
+      "paddingLeft": 34,
+      "symbol": "circle",
+      "block": {
+        "width": 10,
+      },
+    },
+  ],
+}
