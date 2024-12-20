@@ -3,8 +3,7 @@
 set fish_greeting neofetch --ascii_distro arch_small 
 
 #function fish_greeting
-#    neofetch --ascii_distro arch_small
-#    date  
+#    neofetch --ascii_distro arch_small 
 #end
 #funcsave fish_greeting
 
@@ -23,8 +22,8 @@ alias ls "ls -p -G"
 # alias ll "eza --long --icons --git --header --created --modified --no-user"
 # alias lt "eza --tree --icons --git --long --level=2 --header --created --modified --no-user"
 alias lt "eza --icons --tree --level=3 --color=always --header"
-alias ll "eza --icons --color=always --long --header --no-time -o"
-alias la "eza --icons --color=always --long --header --no-time -o -a"
+alias ll "eza --links --icons --color=always --long --header --no-time"
+alias la "eza --links --group --icons --color=always --long --header --no-time -a"
 # alias bat "bat"
 alias rp "rip"
 alias rpu "rip -u"
