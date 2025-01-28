@@ -1,0 +1,93 @@
+// Inspired by Catnap
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "kitty-direct",
+        "source": "~/.config/fastfetch/rempng.png",
+        "padding": {
+            "top": 2
+        }
+    },
+    "display": {
+        "separator": " "
+    },
+    "modules": [
+        {
+            "key": "╭───────────╮",
+            "type": "custom"
+        },
+        {
+            "key": "│ {#31} User    {#keys}│",
+            "type": "title",
+            "format": "{user-name}"
+        },
+        {
+            "key": "│ {#32}󰇅 Host    {#keys}│",
+            "type": "title",
+            "format": "{host-name}"
+        },
+        {
+            "key": "│ {#33}󰅐 Uptime  {#keys}│",
+            "type": "uptime"
+        },
+        {
+            "key": "│ {#34}{icon} Distro  {#keys}│",
+            "type": "os"
+        },
+        {
+            "key": "│ {#35} Kernel  {#keys}│",
+            "type": "kernel"
+        },
+        {
+            "key": "│ {#37}󰩟 Bios    {#keys}│",
+            "type": "bios",
+        },
+        {
+            "key": "│ {#36}󰇄 Desktop {#keys}│",
+            "type": "de"
+        },
+        {
+            "key": "│ {#31} Term    {#keys}│",
+            "type": "terminal"
+        },
+        {
+            "key": "│ {#32} Shell   {#keys}│",
+            "type": "shell"
+        },
+        {
+            "key": "│ {#33}󰍛 Cpu     {#keys}│",
+            "type": "cpu",
+            "showPeCoreCount": true
+        },
+                {
+            "key": "│ {#34} Gpu     {#keys}│",
+            "type": "gpu",
+        },
+        {
+            "key": "│ {#35}󰉉 Disk    {#keys}│",
+            "type": "disk",
+            "folders": "/"
+        },
+        {
+            "key": "│ {#36} Memory  {#keys}│",
+            "type": "memory"
+        },
+        {
+            "key": "│ {#37}󰏗 Package {#keys}│",
+            "type": "packages",
+        },
+        {
+            "key": "├───────────┤",
+            "type": "custom"
+        },
+        {
+            "key": "│ {#39} colors  {#keys}│",
+            "type": "colors",
+            "symbol": "circle"
+        },
+        {
+            "key": "╰───────────╯",
+            "type": "custom"
+        }
+    ]
+}
