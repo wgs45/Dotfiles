@@ -9,6 +9,10 @@ local opts = { noremap = true, silent = true }
 -- <leader> (backslash "\") + l to open lazyvim info
 -- <space> + l to open lazyvim info
 
+-- key maps for comment.nvim
+-- while on nvim visual mode, type "gcc" to comment the line
+-- To uncomment, type again "gcc"
+
 -- Do things without affecting the registers
 keymap.set("n", "x", '"_x')
 keymap.set("n", "<Leader>p", '"0p')

@@ -78,6 +78,7 @@ return {
     -- logo
     {
         "nvimdev/dashboard-nvim",
+        enabled = false,
         event = "VimEnter",
     },
 
