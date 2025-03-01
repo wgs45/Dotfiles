@@ -84,6 +84,11 @@ return {
                 "go",
                 "sql",
                 "fish",
+                "latex",
+                "norg",
+                "svelte",
+                "typst",
+                "vue",
             },
             incremental_selection = {
                 enable = true,
