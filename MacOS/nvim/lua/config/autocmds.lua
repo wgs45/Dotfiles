@@ -1,18 +1,43 @@
--- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
--- Add any additional autocmds here
+-- ╭──────────────────────────────────────────────────────────╮
+-- │                  AutoCmd Scroll                          │
+-- ╰──────────────────────────────────────────────────────────╯
 
--- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = "*",
-  command = "set nopaste",
+local autocmd = vim.api.nvim_create_autocmd
+
+-- ── Behavior ────────────────────────────────────────────────
+
+-- Exit paste mode automatically when leaving insert mode
+autocmd("InsertLeave", {
+    pattern = "*",
+    command = "set nopaste",
 })
 
--- Disable the concealing in some file formats
--- The default conceallevel is 3 in LazyVim
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "json", "jsonc", "markdown" },
-  callback = function()
-    vim.opt.conceallevel = 0
-  end,
+-- ── UI ──────────────────────────────────────────────────────
+
+-- Disable conceal in specific filetypes (for readability!)
+autocmd("FileType", {
+    pattern = { "json", "jsonc", "markdown" },
+    callback = function()
+        vim.opt.conceallevel = 0
+    end,
+})
+
+-- ── Spell Check ─────────────────────────────────────────────
+
+-- Enable spell checking in prose files (Markdown, commits, etc.)
+autocmd("FileType", {
+    pattern = { "markdown", "gitcommit", "text" },
+    callback = function()
+        vim.opt.spell = true
+        vim.opt.spelllang = { "en_us" }
+    end,
+})
+
+-- ── Yank ─────────────────────────────────────
+
+-- Highlight on yank (nice visual feedback!)
+autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank({ timeout = 200 })
+    end,
 })

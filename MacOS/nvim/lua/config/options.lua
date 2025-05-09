@@ -1,62 +1,70 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+-- ╭──────────────────────────────────────────────────────────╮
+-- │                  Magical Options                         │
+-- ╰──────────────────────────────────────────────────────────╯
 
-local opt = vim.opt -- for conciseness
+local opt = vim.opt
 
--- line numbers
-opt.relativenumber = false -- show relative line numbers (disable)
-opt.number = true -- shows absolute line number on cursor line (when relative number is on)
+-- ✨ UI Enhancements
+opt.number = true -- Show absolute line numbers
+opt.relativenumber = false -- Disable relative numbers
+opt.cursorline = false -- No highlight on the current line
+opt.signcolumn = "yes" -- Show signs inside line number column (try "yes" if you prefer)
+opt.title = true -- Set terminal title
+opt.cmdheight = 1 -- Minimal command line height
+opt.laststatus = 2 -- Global statusline
+opt.scrolloff = 10 -- Keep cursor from touching top/bottom
+opt.sidescrolloff = 8 -- Same for horizontal movement
+opt.wrap = true -- Enable soft wrap (for prose, markdown, etc.)
+opt.breakindent = true -- Preserve indentation when wrapping
 
--- Basic configurations
-opt.cursorline = false
+-- ✨ Visual Aesthetics
+opt.termguicolors = true -- Enable true color (Kitty supports it!)
+opt.signcolumn = "number" -- Show LSP & git signs in number column
+opt.iskeyword:append("-") -- Treat dash-separated words as one
+
+-- ✨ Encoding
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
-opt.title = true
-opt.hlsearch = true -- enable highlight search
-opt.showcmd = true
-opt.cmdheight = 1
-opt.laststatus = 2
-opt.expandtab = true
-opt.scrolloff = 10
-opt.shell = "fish"
-opt.inccommand = "split"
-opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
-opt.path:append({ "**" }) -- Finding files - Search down into subfolders
-opt.wildignore:append({ "*/node_modules/*" })
 
--- tabs & indentation
-opt.tabstop = 4 -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 4 -- 2 spaces for indent width (default)
-opt.expandtab = true -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+-- ✨ Search
+opt.hlsearch = true -- Highlight search results
+opt.ignorecase = true -- Case-insensitive by default
+opt.smartcase = true -- Smart case-sensitive when uppercase used
+
+-- ✨ Indentation
+opt.tabstop = 4 -- Tab width
+opt.shiftwidth = 4 -- Auto-indent width
+opt.expandtab = true -- Tabs become spaces
+opt.autoindent = true
 opt.smartindent = true
 opt.smarttab = true
-opt.breakindent = true
 
--- line wrapping
-opt.wrap = true -- disable line wrapping
+-- ✨ Shell & Commands
+opt.shell = "fish" -- Your magical shell
+opt.inccommand = "split" -- Preview substitution live
 
--- appereance
--- opt.signcolumn = "yes" -- show sign column so that text doesn't shift
+-- ✨ Path & Ignore
+opt.path:append("**") -- Recursive file search
+opt.wildignore:append({ "*/node_modules/*" })
 
--- search settings
-opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+-- ✨ Clipboard & Backspace
+opt.clipboard:append("unnamedplus") -- Use system clipboard
+opt.backspace = { "start", "eol", "indent" }
 
--- backspace
-opt.backspace = { "start", "eol", "indent" } -- allow backspace on indent, end of line or insert mode start position
-
--- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
-
--- split windows
-opt.splitright = true -- split vertical window to the right
-opt.splitbelow = true -- split horizontal window to the bottom
+-- ✨ Splits
+opt.splitright = true
+opt.splitbelow = true
 opt.splitkeep = "cursor"
 
--- Undercurl
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
+-- ✨ Undercurl (Kitty supports this!)
+vim.cmd([[let &t_Cs = "\e[4:3m"]]) -- Start undercurl
+vim.cmd([[let &t_Ce = "\e[4:0m"]]) -- End undercurl
 
-opt.iskeyword:append("-") -- consider string-string as whole words
+-- ✨ Diagnostic Settings (Optional but recommended)
+vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+})
