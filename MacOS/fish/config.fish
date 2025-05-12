@@ -1,12 +1,3 @@
-# shell greeting
-
-set fish_greeting neofetch
-
-#function fish_greeting
-#    neofetch
-#end
-#funcsave fish_greeting
-
 # set -gx TERM xterm-256color
 set -gx TERM xterm-kitty
 
@@ -37,9 +28,6 @@ alias txd "tmux detach"
 alias txl "tmux list-sessions"
 
 alias pn pnpm # aliases for pnpm 
-
-# Revert fzf back to default
-set -e FZF_DEFAULT_OPTS
 
 # Others
 # alias scc "scc"
