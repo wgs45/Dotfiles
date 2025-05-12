@@ -38,6 +38,9 @@ alias txl "tmux list-sessions"
 
 alias pn pnpm # aliases for pnpm 
 
+# Revert fzf back to default
+set -e FZF_DEFAULT_OPTS
+
 # Others
 # alias scc "scc"
 # alias http "http"
