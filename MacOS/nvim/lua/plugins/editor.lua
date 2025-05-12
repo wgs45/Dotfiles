@@ -1,13 +1,14 @@
 return {
     {
-        enabled = false,
         "folke/flash.nvim",
+        event = "VeryLazy", -- Load when nvim is idle
+        enabled = true, -- Enable the plugin (change to false to disable)
         opts = {
             search = {
-                forward = true,
-                multi_window = false,
-                wrap = false,
-                incremental = true,
+                forward = true, -- Search forward
+                multi_window = false, -- Restrict to current window
+                wrap = false, -- Don't wrap search
+                incremental = true, -- Incremental preview
             },
         },
     },

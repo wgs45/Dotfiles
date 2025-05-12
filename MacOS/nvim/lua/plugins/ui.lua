@@ -72,6 +72,24 @@ return {
             opts.scroll = {
                 enable = false,
             }
+            opts.window = {
+                enable = true, -- Enable window animations (for opening/closing windows).
+                duration = 200, -- Set the duration for window animations (in milliseconds).
+                easing = "cubic", -- Use cubic easing for smoother transitions.
+            }
+            opts.cursor = {
+                enable = true, -- Enable cursor animations (optional, can enhance interactivity).
+                duration = 150, -- Cursor animation speed (lower value = faster animation).
+                easing = "linear", -- Keep cursor animations sharp and quick.
+            }
+            opts.highlight = {
+                enable = true, -- Enable highlighting animations (such as on search results).
+                duration = 150, -- Duration for highlight animations.
+            }
+            opts.background = {
+                enable = true, -- Allow background animations for transitions.
+                duration = 300, -- Background fade duration for smooth transitions.
+            }
         end,
     },
 

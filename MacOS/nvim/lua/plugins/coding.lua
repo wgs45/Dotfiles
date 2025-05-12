@@ -94,12 +94,15 @@ return {
             table.insert(opts.sources, { name = "emoji" })
         end,
     },
+
     {
         "numToStr/Comment.nvim",
         opts = {
             -- add any options here
         },
     },
+
+    -- Todo list comments
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -148,7 +151,7 @@ return {
         enabled = vim.fn.has("nvim-0.10.0") == 1,
     },
 
-    -- Tailwindcss configuration
+    -- Lsp configuration
     {
         "neovim/nvim-lspconfig",
         opts = {
@@ -157,17 +160,10 @@ return {
             },
         },
     },
-    {
-        "NvChad/nvim-colorizer.lua",
-        opts = {
-            user_default_options = {
-                tailwind = true,
-            },
-        },
-    },
+
+    -- Tailwind CSS tools
     {
         "roobert/tailwindcss-colorizer-cmp.nvim",
-        -- optionally, override the default options:
         config = function()
             require("tailwindcss-colorizer-cmp").setup({
                 color_square_width = 2,
@@ -176,9 +172,7 @@ return {
     },
     {
         "hrsh7th/nvim-cmp",
-        dependencies = {
-            { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
-        },
+        dependencies = { "roobert/tailwindcss-colorizer-cmp.nvim" },
         opts = function(_, opts)
             local format_kinds = opts.formatting.format
             opts.formatting.format = function(entry, item)
