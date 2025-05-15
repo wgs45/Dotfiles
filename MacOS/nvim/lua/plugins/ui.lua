@@ -159,38 +159,12 @@ return {
         },
     },
 
-    -- 🏮 Tokyonight colorscheme (transparent setup)
-    {
-        "folke/tokyonight.nvim",
-        opts = {
-            style = "night",
-            transparent = true,
-            styles = {
-                sidebars = "transparent",
-                keywords = { bold = true },
-                functions = { bold = true },
-                floats = "transparent",
-            },
-            on_colors = function(colors)
-                colors.bg_statusline = colors.none -- try "#ff00ff" to test
-            end,
-        },
-    },
-
-    -- 🎨 Set Tokyonight as the LazyVim colorscheme
-    {
-        "LazyVim/LazyVim",
-        opts = {
-            colorscheme = "tokyonight",
-        },
-    },
-
     -- 🎵 Lualine: statusline setup with Tokyonight theme
     {
         "nvim-lualine/lualine.nvim",
         opts = function(_, opts)
             opts.options = {
-                theme = "tokyonight",
+                theme = "cyberdream",
                 component_separators = "|",
                 section_separators = "",
                 globalstatus = true,
