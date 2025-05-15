@@ -1,4 +1,4 @@
-# Made by: https://github.com/andrew8088
+# Customized by Me
 
 format = """
 $username\
@@ -18,92 +18,111 @@ $php\
 $golang\
 $swift\
 $nodejs\
+$custom.dev\
 $cmd_duration $jobs $status $time\
 $line_break\
 $character"""
 
 scan_timeout = 20
 
-[nodejs]
-format = "[$symbol($version )]($style)"
-
-[c]
-format = "[$symbol($version )]($style)"
-
-[python]
-format = "[$symbol($version )]($style)"
-
-[swift]
-format = "[$symbol($version )]($style)"
-
-[ruby]
-format = "[$symbol($version )]($style)"
-
-[java]
-format = "[$symbol($version )]($style)"
-
-[php]
-format = "[$symbol($version )]($style)"
-
-[golang]
-format = "[$symbol($version )]($style)"
-
+# ⛓ FILL MODULE
 [fill]
 symbol = " "
 
-[package]
-format = "[$symbol($version )]($style)"
-
+# 📁 DIRECTORY
 [directory]
-style = "blue"
+style = "bold fg:#5ea1ff"
 read_only = " "
-truncation_length = 4
-truncate_to_repo = false
+truncation_length = 3
+truncate_to_repo = true
 
-[character]
-success_symbol = "[❯](purple)"
-error_symbol = "[✗](bold red)"
-vicmd_symbol = "[➜](green)"
-
+# 🔀 GIT BRANCH
 [git_branch]
 symbol = " "
 format = "[$symbol$branch]($style) "
-style = "bright-black"
+style = "fg:#7b8496"
 
-[jobs]
-symbol = ""
-style = "bold red"
-number_threshold = 1
-format = "[$symbol]($style)"
-
+# 🔄 GIT STATUS + STATE + METRICS
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
-style = "cyan"
+style = "fg:#4ed7e4"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "bright-black"
+style = "fg:#5e6777"
 
 [git_metrics]
 disabled = false
 
+# 💬 CMD DURATION
 [cmd_duration]
-format = "[$duration]($style)"
-style = "yellow"
+format = "transcending [$duration]($style)"
+style = "fg:#f1ff5e"
 
-[memory_usage]
-symbol = " "
-
-[rust]
-symbol = " "
-
-[time]
-disabled = false
-style = "bold white"
-format = "[$time]($style)"
-
+# 💥 STATUS
 [status]
 format = '[✗ $status](bold red) '
 success_symbol = ''
 map_symbol = false
 
+# 🧠 JOBS
+[jobs]
+symbol = ""
+style = "bold fg:#ff6e5e"
+number_threshold = 1
+format = "[$symbol]($style)"
+
+# 🕒 TIME
+[time]
+disabled = false
+style = "bold white"
+format = "[$time]($style)"
+
+# 💻 PROGRAMMING LANGUAGES
+[nodejs]
+format = "[$symbol($version )]($style)"
+style = "fg:#4ed7e4"
+
+[c]
+format = "[$symbol($version )]($style)"
+style = "fg:#478de0"
+
+[python]
+format = "[$symbol($version )]($style)"
+style = "fg:#d7e44e"
+
+[swift]
+format = "[$symbol($version )]($style)"
+style = "fg:#ffbd5e"
+
+[ruby]
+format = "[$symbol($version )]($style)"
+style = "fg:#ff5a4a"
+
+[java]
+format = "[$symbol($version )]($style)"
+style = "fg:#a84ae0"
+
+[php]
+format = "[$symbol($version )]($style)"
+style = "fg:#ff9abe"
+
+[golang]
+format = "[$symbol($version )]($style)"
+style = "fg:#4ae05c"
+
+[package]
+format = "[$symbol($version )]($style)"
+style = "fg:#5eff6c"
+
+# 💠 CHARACTER SYMBOLS
+[character]
+success_symbol = "[❯](fg:#5eff6c)"
+error_symbol = "[✖](bold red)"
+vicmd_symbol = "[◆](green)"
+
+# ⚡ CUSTOM DEV BANNER (when in Git repo)
+[custom.dev]
+command = "echo '🚧 Dev Mode'"
+when = 'test -d .git'
+style = "bold fg:#ffbd5e"
