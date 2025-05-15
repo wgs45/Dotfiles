@@ -1,3 +1,7 @@
+# Reference: https://github.com/ttys3/my-kitty-config/blob/main/kitty.conf
+# Reference: https://github.com/megalithic/dotfiles/blob/main/config/kitty/kitty.conf
+# Reference: https://github.com/jacobrreed/dotfiles/blob/master/.config/kitty/kitty.conf
+
 # --[ Basic Configuration ] -------------------------------------------------------------- {{{
 term xterm-256color
 enable_image_display yes
@@ -17,7 +21,6 @@ bold_font        auto
 italic_font      auto
 bold_italic_font auto
 font_size 12
-enable_harfbuzz_substitution yes
 # END_KITTY_FONTS
 # }}}
 
@@ -51,7 +54,7 @@ window_padding_width 5
 # --[ Background ] -------------------------------------------------------------- {{{
 # background_opacity 0.71
 background_opacity 0.8
-dynamic_background_opacity yes
+dynamic_background_opacity no
 background_image ~/.config/kitty/kasumigaoka_utaha.png
 # background_image_layout centered
 background_image_linear no
@@ -61,8 +64,6 @@ background_image_scale stretch
 # --[ mouse ] -------------------------------------------------------------- {{{
 copy_on_select                  yes
 scrollback_lines                20000
-scrollback_pager_history_size 1000
-scrollback_pager_background_opacity 0.9
 # The modifiers to use rectangular selection (i.e. to select text in a
 # rectangular block with the mouse)
 # rectangle_select_modifiers ctrl+alt
@@ -99,7 +100,7 @@ tab_bar_style             separator
 tab_bar_min_tabs          1
 tab_separator             ""
 tab_title_template "{fmt.fg._1a1b26}{fmt.bg.default}{fmt.fg._7dcfff}{fmt.bg._1a1b26}{fmt.fg._7dcfff}{fmt.bg._1a1b26} {title[:40] + (title[40:] and '…')} {fmt.fg._1a1b26}{fmt.bg.default} "
-active_tab_title_template "{fmt.fg._7aa2f7}{fmt.bg.default}{fmt.fg._1a1b26}{fmt.bg._7aa2f7}{index}:{fmt.fg._1a1b26}{fmt.bg._7aa2f7} {title[:15] + (title[15:] and '…')} {fmt.fg._7aa2f7}{fmt.bg.default} "
+active_tab_title_template "{fmt.fg._7aa2f7}{fmt.bg.default}{fmt.fg._1a1b26}{fmt.bg._7aa2f7}{index}{fmt.fg._1a1b26}{fmt.bg._7aa2f7} {title[:15] + (title[15:] and '…')} {fmt.fg._7aa2f7}{fmt.bg.default} "
 #}}}
 
 # --[ OS Configuration ] --------------------------------------------------------------- {{{
@@ -108,7 +109,7 @@ macos_window_resizable no
 macos_show_window_title_in none
 # macos_menubar_title_max_length 10
 macos_quit_when_last_window_closed yes
-# Values is either default, displayp or srgb
+# Values is either default, displayp oe srgb
 macos_colorspace displayp3
 # }}}
 
@@ -122,6 +123,6 @@ globinclude maps.conf
 
 
 # BEGIN_KITTY_THEME
-# Cyberdream
+# Default
 include current-theme.conf
 # END_KITTY_THEME
