@@ -1,0 +1,30 @@
+# name: 'modified darker cyberdream'
+# url: 'https://github.com/scottmckendry/cyberdream.nvim'
+# preferred_background: 0e0f11
+
+fish_color_normal e0e0e0
+fish_color_command 4ed7e4
+fish_color_param ff9abe
+fish_color_keyword 4ae05c
+fish_color_quote d7e44e
+fish_color_redirection 478de0
+fish_color_end a84ae0
+fish_color_comment 5e6777
+fish_color_error ff5a4a
+fish_color_gray 5e6777
+fish_color_selection --background=2a2d32
+fish_color_search_match --background=2a2d32
+fish_color_option d7e44e
+fish_color_operator 478de0
+fish_color_escape ff9abe
+fish_color_autosuggestion 5e6777
+fish_color_cancel ff5a4a
+fish_color_cwd e6a84a
+fish_color_user 4ef5c2
+fish_color_host 4ae05c
+fish_color_host_remote d7e44e
+fish_color_status ff5a4a
+fish_pager_color_progress 5e6777
+fish_pager_color_prefix 478de0
+fish_pager_color_completion e0e0e0
+fish_pager_color_description 5e6777

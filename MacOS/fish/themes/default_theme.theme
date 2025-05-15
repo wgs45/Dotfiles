@@ -1,0 +1,7 @@
+# Defined interactively
+function fish_prompt
+        set -l func fish_prompt
+                test -e $__async_prompt_tmpdir'/'$fish_pid'_'$func
+                and cat $__async_prompt_tmpdir'/'$fish_pid'_'$func
+            
+end
