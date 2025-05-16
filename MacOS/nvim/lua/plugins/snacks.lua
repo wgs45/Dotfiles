@@ -52,6 +52,12 @@ return {
                             action = ":Lazy",
                             enabled = package.loaded.lazy ~= nil,
                         },
+                        {
+                            icon = "M ",
+                            key = "M",
+                            desc = "Mason",
+                            action = ":Mason",
+                        },
                         { icon = " ", key = "q", desc = "Quit", action = ":qa" },
                     },
                     -- Used by the `header` section
@@ -120,8 +126,8 @@ return {
                     highlight = "Function", -- change to whatever HL group you like
                 },
             },
-            explorer = {},
-            image = {},
+            explorer = { lazy = true },
+            image = { lazy = true },
         },
     },
 }

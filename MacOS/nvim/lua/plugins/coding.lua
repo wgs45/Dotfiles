@@ -95,6 +95,38 @@ return {
         end,
     },
 
+    -- Autopairs
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function()
+            local autopairs = require("nvim-autopairs")
+
+            autopairs.setup({
+                check_ts = true, -- 🌳 enable treesitter checking for better pairing in some languages
+                enable_check_bracket_line = false, -- disable pairing across lines
+                ignored_next_char = "[%w%.]", -- ignore alphanumeric and dot
+                fast_wrap = {
+                    map = "<M-e>", -- use Alt+e to wrap text (you can change this)
+                    chars = { "{", "[", "(", '"', "'" },
+                    pattern = [=[[%'%"%>%]%)%}%,]]=],
+                    end_key = "$",
+                    keys = "qwertyuiopzxcvbnmasdfghjkl",
+                    check_comma = true,
+                    highlight = "Search",
+                    highlight_grey = "Comment",
+                },
+            })
+
+            -- ✨ CMP integration (auto-pairs after completion)
+            local cmp_status_ok, cmp = pcall(require, "cmp")
+            if cmp_status_ok then
+                local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+                cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+            end
+        end,
+    },
+
     {
         "numToStr/Comment.nvim",
         opts = {
@@ -107,25 +139,6 @@ return {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
-    },
-
-    -- Database using nvim
-    {
-        "kristijanhusak/vim-dadbod-ui",
-        dependencies = {
-            { "tpope/vim-dadbod", lazy = true },
-            { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
-        },
-        cmd = {
-            "DBUI",
-            "DBUIToggle",
-            "DBUIAddConnection",
-            "DBUIFindBuffer",
-        },
-        init = function()
-            -- Your DBUI configuration
-            vim.g.db_ui_use_nerd_fonts = 1
-        end,
     },
 
     { -- optional saghen/blink.cmp completion source
@@ -141,6 +154,44 @@ return {
                     dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
                 },
             },
+        },
+    },
+
+    -- Conform
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    cmd = { "ConformInfo" },
+    opts = {
+        notify_on_error = true,
+        format_on_save = function(bufnr)
+            -- Disable format on save for large files
+            local max_size = 512 * 1024 -- 512 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+            if ok and stats and stats.size > max_size then
+                return
+            end
+            return { timeout_ms = 1000, lsp_fallback = true }
+        end,
+        formatters_by_ft = {
+            lua = { "stylua" },
+            sh = { "shfmt" },
+            bash = { "shfmt" },
+            zsh = { "shfmt" },
+            python = { "black", "isort" },
+            javascript = { "prettier" },
+            typescript = { "prettier" },
+            javascriptreact = { "prettier" },
+            typescriptreact = { "prettier" },
+            json = { "prettier" },
+            yaml = { "prettier" },
+            html = { "prettier" },
+            css = { "prettier" },
+            scss = { "prettier" },
+            c = { "clang_format" },
+            cpp = { "clang_format" },
+            cs = { "csharpier" },
+            markdown = { "prettier" },
+            ["*"] = { "trim_whitespace" }, -- Applies to everything else
         },
     },
 

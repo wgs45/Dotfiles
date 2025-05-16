@@ -13,33 +13,28 @@ return {
         },
     },
 
-    -- {
-    --     "echasnovski/mini.hipatterns",
-    --     event = "BufReadPre",
-    --     opts = {
-    --         highlighters = {
-    --             hsl_color = {
-    --                 pattern = "hsl%(%d+,? %d+%%?,? %d+%%?%)",
-    --                 group = function(_, match)
-    --                     local utils = require("solarized-osaka.hsl")
-    --                     --- @type string, string, string
-    --                     local nh, ns, nl = match:match("hsl%((%d+),? (%d+)%%?,? (%d+)%%?%)")
-    --                     --- @type number?, number?, number?
-    --                     local h, s, l = tonumber(nh), tonumber(ns), tonumber(nl)
-    --                     --- @type string
-    --                     local hex_color = utils.hslToHex(h, s, l)
-    --                     return MiniHipatterns.compute_hex_color_group(hex_color, "bg")
-    --                 end,
-    --             },
-    --         },
-    --     },
-    -- },
-
-    { "echasnovski/mini.hipatterns", version = "*" },
+    {
+        "echasnovski/mini.hipatterns",
+        version = "*",
+        event = "BufReadPre",
+        config = function()
+            local hipatterns = require("mini.hipatterns")
+            hipatterns.setup({
+                highlighters = {
+                    hex_color = hipatterns.gen_highlighter.hex_color(),
+                    -- auto-highlight TODO, FIXME, etc.
+                    todo = {
+                        pattern = "%f[%w]()TODO()%f[%W]",
+                        group = "Todo",
+                    },
+                },
+            })
+        end,
+    },
 
     {
         "folke/trouble.nvim",
-        opts = {}, -- for default options, refer to the configuration section for custom setup.
+        opts = { use_diagnostic_signs = true },
         cmd = "Trouble",
         keys = {
             {
@@ -201,14 +196,15 @@ return {
                 layout_strategy = "horizontal",
                 layout_config = { prompt_position = "top" },
                 sorting_strategy = "ascending",
-                winblend = 0,
+                winblend = 5,
+                path_display = { "smart" },
                 mappings = {
                     n = {},
                 },
             })
             opts.pickers = {
                 diagnostics = {
-                    theme = "ivy",
+                    theme = "cyberdream",
                     initial_mode = "normal",
                     layout_config = {
                         preview_cutoff = 9999,

@@ -59,8 +59,11 @@ return {
     -- notify
     {
         "rcarriga/nvim-notify",
+        event = "VeryLazy",
         opts = {
+            render = "default",
             timeout = 3000,
+            stages = "fade_in_slide_out",
         },
     },
 
@@ -159,17 +162,104 @@ return {
         },
     },
 
-    -- 🎵 Lualine: statusline setup with Tokyonight theme
+    -- 🧲 Harpoon core
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "letieu/harpoon-lualine",
+        },
+        -- config = function()
+        --     local harpoon = require("harpoon")
+        --     harpoon:setup()
+        --
+        --     local list = harpoon:list()
+        --     local ui = harpoon.ui
+        --
+        --     vim.keymap.set("n", "<leader>a", function()
+        --         list:add()
+        --         vim.cmd.redrawstatus()
+        --         vim.cmd("redrawstatus")
+        --     end, { desc = "󰛢 Harpoon: Add file" })
+        --
+        --     vim.keymap.set("n", "<leader>hr", function()
+        --         list:remove()
+        --         vim.cmd.redrawstatus()
+        --         vim.cmd("redrawstatus")
+        --     end, { desc = "󰛢 Harpoon: Remove current mark" })
+        --
+        --     vim.keymap.set("n", "<C-e>", function()
+        --         ui:toggle_quick_menu(list)
+        --     end, { desc = "Harpoon: Quick menu" })
+        --
+        --     vim.keymap.set("n", "<C-h>", function()
+        --         harpoon:list():select(1)
+        --     end)
+        --     vim.keymap.set("n", "<C-t>", function()
+        --         harpoon:list():select(2)
+        --     end)
+        --     vim.keymap.set("n", "<C-n>", function()
+        --         harpoon:list():select(3)
+        --     end)
+        --     vim.keymap.set("n", "<C-s>", function()
+        --         harpoon:list():select(4)
+        --     end)
+        --
+        --     vim.keymap.set("n", "<C-S-P>", function()
+        --         list:prev()
+        --     end, { desc = "Harpoon: Previous mark" })
+        --     vim.keymap.set("n", "<C-S-N>", function()
+        --         list:next()
+        --     end, { desc = "Harpoon: Next mark" })
+        -- end,
+    },
+
+    -- 🎀 Harpoon Lualine Integration
+    {
+        "letieu/harpoon-lualine",
+        dependencies = {
+            {
+                "ThePrimeagen/harpoon",
+                branch = "harpoon2",
+            },
+        },
+    },
+
+    -- 🎵 Lualine: statusline setup with custom theme
     {
         "nvim-lualine/lualine.nvim",
         opts = function(_, opts)
-            opts.options = {
+            opts.options = vim.tbl_deep_extend("force", opts.options or {}, {
                 theme = "cyberdream",
                 component_separators = "|",
                 section_separators = "",
                 globalstatus = true,
-                disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
-            }
+                disabled_filetypes = {
+                    statusline = { "dashboard", "lazy", "alpha" },
+                    winbar = {},
+                },
+            })
+
+            opts.sections = opts.sections or {}
+            opts.sections.lualine_c = opts.sections.lualine_c or {}
+
+            -- Add Harpoon2 component safely
+            table.insert(opts.sections.lualine_c, {
+                "harpoon2",
+                icon = "󰀱",
+                indicators = { "h", "t", "n", "s" }, -- The keys you use to jump
+                active_indicators = { "[H]", "[T]", "[N]", "[S]" }, -- Looks extra clean
+                color_active = { fg = "#7fff9f", gui = "bold" }, -- Bright mint green from cyber palette
+                color = { fg = "#888888" }, -- Dimmed inactive indicators
+                no_harpoon = "Harpoon Empty",
+                _separator = " ", -- Extra spacing between indicators
+            })
+
+            -- Add filetype to lualine_x safely
+            -- opts.sections.lualine_x = opts.sections.lualine_x or {}
+            -- table.insert(opts.sections.lualine_x, "filetype")
         end,
     },
 }
