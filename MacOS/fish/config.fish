@@ -38,5 +38,3 @@ alias pn pnpm # aliases for pnpm
 # ffmpeg (Powerful video and music tools)
 # yt-dlp (Download files from youtube)
 # fd (better find)
-
-# thefuck --alias | source
