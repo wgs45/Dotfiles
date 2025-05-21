@@ -1,5 +1,3 @@
-# Customized by Me
-
 format = """
 $username\
 $hostname\
@@ -33,7 +31,7 @@ symbol = " "
 [directory]
 style = "bold fg:#5ea1ff"
 read_only = " "
-truncation_length = 3
+truncation_length = 4            # slightly longer for clarity
 truncate_to_repo = true
 
 # 🔀 GIT BRANCH
@@ -44,7 +42,7 @@ style = "fg:#7b8496"
 
 # 🔄 GIT STATUS + STATE + METRICS
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
+format = '([\[$all_status$ahead_behind\]]($style))'
 style = "fg:#4ed7e4"
 
 [git_state]
@@ -58,6 +56,7 @@ disabled = false
 [cmd_duration]
 format = "transcending [$duration]($style)"
 style = "fg:#f1ff5e"
+disabled = false             # keep visible to know slow commands
 
 # 💥 STATUS
 [status]
@@ -70,7 +69,7 @@ map_symbol = false
 symbol = ""
 style = "bold fg:#ff6e5e"
 number_threshold = 1
-format = "[$symbol]($style)"
+format = "[$symbol $number]($style)"   # added number display for clarity
 
 # 🕒 TIME
 [time]
@@ -117,12 +116,13 @@ style = "fg:#5eff6c"
 
 # 💠 CHARACTER SYMBOLS
 [character]
-success_symbol = "[❯](fg:#5eff6c)"
-error_symbol = "[✖](bold red)"
-vicmd_symbol = "[◆](green)"
+success_symbol = "[❯](fg:#5eff6c) "
+error_symbol = "[✖](bold red) "
+vicmd_symbol = "[◆](green) "
 
 # ⚡ CUSTOM DEV BANNER (when in Git repo)
 [custom.dev]
 command = "echo '🚧 Dev Mode'"
 when = 'test -d .git'
 style = "bold fg:#ffbd5e"
+
