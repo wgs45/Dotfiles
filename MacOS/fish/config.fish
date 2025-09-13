@@ -2,6 +2,7 @@
 set -gx TERM xterm-kitty
 
 starship init fish | source
+zoxide init fish | source
 
 # theme
 set -g theme_color_scheme terminal-dark
