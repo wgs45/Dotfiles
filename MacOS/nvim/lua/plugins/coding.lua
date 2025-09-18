@@ -41,7 +41,7 @@ return {
 
     -- Go forward/backward with square brackets
     {
-        "echasnovski/mini.bracketed",
+        "nvim-mini/mini.bracketed",
         event = "BufReadPost",
         config = function()
             local bracketed = require("mini.bracketed")
@@ -211,6 +211,26 @@ return {
             },
         },
     },
+
+    -- Database using nvim
+    {
+        "kristijanhusak/vim-dadbod-ui",
+        dependencies = {
+            { "tpope/vim-dadbod", lazy = true },
+            { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+        },
+        cmd = {
+            "DBUI",
+            "DBUIToggle",
+            "DBUIAddConnection",
+            "DBUIFindBuffer",
+        },
+        init = function()
+            -- Your DBUI configuration
+            vim.g.db_ui_use_nerd_fonts = 1
+        end,
+    },
+
 
     -- Tailwind CSS tools
     {

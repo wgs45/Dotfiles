@@ -14,7 +14,7 @@ return {
     },
 
     {
-        "echasnovski/mini.hipatterns",
+        "nvim-mini/mini.hipatterns",
         version = "*",
         event = "BufReadPre",
         config = function()

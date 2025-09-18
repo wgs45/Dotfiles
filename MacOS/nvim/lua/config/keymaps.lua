@@ -57,7 +57,4 @@ keymap.set("n", "<C-w><down>", "<C-w>-") -- Decrease height
 -- ✨ Bonus: Jumping in files like a magical breeze~
 keymap.set("n", "<Leader>j", ":Telescope find_files<CR>", opts) -- Find files with Telescope
 
--- Harpoon lualine
-keymap.set("n", "<leader>ha", function()
-    require("harpoon"):list():add()
-end, { desc = "Harpoon Add File" })
+

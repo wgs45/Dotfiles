@@ -1,7 +1,7 @@
 return {
     -- tools
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = function(_, opts)
             vim.list_extend(opts.ensure_installed, {
                 "stylua",
@@ -28,7 +28,7 @@ return {
             { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
             -- { "folke/neodev.nvim", opts = {} },
             "mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
+            "mason-org/mason-lspconfig.nvim",
         },
         ---@class PluginLspOpts
         opts = {
