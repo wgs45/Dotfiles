@@ -25,7 +25,9 @@ return {
         ensure_installed = {
             "bash",
             "c",
+            "cpp",
             "css",
+            "dockerfile",
             "diff",
             "fish",
             "html",
@@ -45,6 +47,7 @@ return {
             "query",
             "regex",
             "scss",
+            "svelte",
             "toml",
             "tsx",
             "typescript",

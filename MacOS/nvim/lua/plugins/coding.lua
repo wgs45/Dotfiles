@@ -231,7 +231,6 @@ return {
         end,
     },
 
-
     -- Tailwind CSS tools
     {
         "roobert/tailwindcss-colorizer-cmp.nvim",
