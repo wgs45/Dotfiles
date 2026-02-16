@@ -1,24 +1,21 @@
 return {
-    -- messages, cmdline and the popupmenu
+    -- ╭──────────────────────────────────────────────────────────╮
+    -- │             Noice: Enhanced UI & Notifications           │
+    -- ╰──────────────────────────────────────────────────────────╯
     {
         "folke/noice.nvim",
         opts = function(_, opts)
+            -- Skip annoying "No information available" messages
             table.insert(opts.routes, {
-                filter = {
-                    event = "notify",
-                    find = "No information available",
-                },
+                filter = { event = "notify", find = "No information available" },
                 opts = { skip = true },
             })
+
+            -- Focus-based routing (Notify-send when Neovim is not focused)
             local focused = true
-            vim.api.nvim_create_autocmd("FocusGained", {
-                callback = function()
-                    focused = true
-                end,
-            })
-            vim.api.nvim_create_autocmd("FocusLost", {
-                callback = function()
-                    focused = false
+            vim.api.nvim_create_autocmd({ "FocusGained", "FocusLost" }, {
+                callback = function(ev)
+                    focused = ev.event == "FocusGained"
                 end,
             })
             table.insert(opts.routes, 1, {
@@ -29,24 +26,6 @@ return {
                 },
                 view = "notify_send",
                 opts = { stop = false },
-            })
-
-            opts.commands = {
-                all = {
-                    -- options for the message history that you get with `:Noice`
-                    view = "split",
-                    opts = { enter = true, format = "details" },
-                    filter = {},
-                },
-            }
-
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = "markdown",
-                callback = function(event)
-                    vim.schedule(function()
-                        require("noice.text.markdown").keys(event.buf)
-                    end)
-                end,
             })
 
             opts.presets.lsp_doc_border = true
@@ -67,43 +46,26 @@ return {
         },
     },
 
-    -- animations
+    -- ╭──────────────────────────────────────────────────────────╮
+    -- │                      Mini.Animate                        │
+    -- ╰──────────────────────────────────────────────────────────╯
     {
         "nvim-mini/mini.animate",
         event = "VeryLazy",
-        opts = function(_, opts)
-            opts.scroll = {
-                enable = false,
-            }
-            opts.window = {
-                enable = true, -- Enable window animations (for opening/closing windows).
-                duration = 200, -- Set the duration for window animations (in milliseconds).
-                easing = "cubic", -- Use cubic easing for smoother transitions.
-            }
-            opts.cursor = {
-                enable = true, -- Enable cursor animations (optional, can enhance interactivity).
-                duration = 150, -- Cursor animation speed (lower value = faster animation).
-                easing = "linear", -- Keep cursor animations sharp and quick.
-            }
-            opts.highlight = {
-                enable = true, -- Enable highlighting animations (such as on search results).
-                duration = 150, -- Duration for highlight animations.
-            }
-            opts.background = {
-                enable = true, -- Allow background animations for transitions.
-                duration = 300, -- Background fade duration for smooth transitions.
-            }
-        end,
+        opts = {
+            scroll = { enable = false },
+            cursor = { enable = true, duration = 100, easing = "linear" },
+            window = {
+                enable = true,
+                duration = 200,
+                easing = "cubic",
+            },
+        },
     },
 
-    -- logo
-    {
-        "nvimdev/dashboard-nvim",
-        enabled = false,
-        event = "VimEnter",
-    },
-
-    -- buffer line
+    -- ╭──────────────────────────────────────────────────────────╮
+    -- │          Bufferline: Tabs and Navigation                 │
+    -- ╰──────────────────────────────────────────────────────────╯
     {
         "akinsho/bufferline.nvim",
         event = "VeryLazy",
@@ -114,42 +76,15 @@ return {
         opts = {
             options = {
                 mode = "tabs",
-                -- separator_style = "slant",
                 show_buffer_close_icons = false,
                 show_close_icon = false,
-                 -- stylua: ignore
-                close_command = function(n) require("mini.bufremove").delete(n, false) end,
-                -- stylua: ignore
-                right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
                 diagnostics = "nvim_lsp",
                 always_show_bufferline = false,
-                diagnostics_indicator = function(_, _, diag)
-                    local icons = require("lazyvim.config").icons.diagnostics
-                    local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-                        .. (diag.warning and icons.Warn .. diag.warning or "")
-                    return vim.trim(ret)
-                end,
                 offsets = {
-                    {
-                        filetype = "neo-tree",
-                        text = "Neo-tree",
-                        highlight = "Directory",
-                        text_align = "left",
-                    },
+                    { filetype = "neo-tree", text = "Neo-tree", highlight = "Directory", text_align = "left" },
                 },
             },
         },
-        config = function(_, opts)
-            require("bufferline").setup(opts)
-            -- Fix bufferline when restoring a session
-            vim.api.nvim_create_autocmd("BufAdd", {
-                callback = function()
-                    vim.schedule(function()
-                        pcall(nvim_bufferline)
-                    end)
-                end,
-            })
-        end,
 
         -- filename
         {
@@ -162,31 +97,18 @@ return {
         },
     },
 
-
-
-    -- 🎵 Lualine: statusline setup with custom theme
+    -- ╭──────────────────────────────────────────────────────────╮
+    -- │          Lualine: Optimized Statusline                   │
+    -- ╰──────────────────────────────────────────────────────────╯
     {
         "nvim-lualine/lualine.nvim",
         opts = function(_, opts)
             opts.options = vim.tbl_deep_extend("force", opts.options or {}, {
                 theme = "cyberdream",
+                globalstatus = true, -- Better performance: one statusline for all windows
                 component_separators = "|",
                 section_separators = "",
-                globalstatus = true,
-                disabled_filetypes = {
-                    statusline = { "dashboard", "lazy", "alpha" },
-                    winbar = {},
-                },
             })
-
-            opts.sections = opts.sections or {}
-            opts.sections.lualine_c = opts.sections.lualine_c or {}
-
-
-
-            -- Add filetype to lualine_x safely
-            -- opts.sections.lualine_x = opts.sections.lualine_x or {}
-            -- table.insert(opts.sections.lualine_x, "filetype")
         end,
     },
 }
