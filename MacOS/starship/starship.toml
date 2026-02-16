@@ -1,3 +1,10 @@
+# 🚀 Global Settings
+# A lower timeout prevents the shell from "hanging" in slow network drives
+scan_timeout = 10
+add_newline = true
+
+# 🎨 Layout
+# Removed $fill to keep the prompt snappy and avoid layout shifts
 format = """
 $username\
 $hostname\
@@ -5,124 +12,60 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
-$git_metrics\
-$fill\
-$c\
-$rust\
-$ruby\
-$package\
 $python\
-$php\
-$golang\
-$swift\
 $nodejs\
-$custom.dev\
-$cmd_duration $jobs $status $time\
+$rust\
+$golang\
+$php\
+$c\
+$cmd_duration $status $time\
 $line_break\
 $character"""
-
-scan_timeout = 20
-
-# ⛓ FILL MODULE
-[fill]
-symbol = " "
 
 # 📁 DIRECTORY
 [directory]
 style = "bold fg:#5ea1ff"
-read_only = " "
-truncation_length = 4            # slightly longer for clarity
+truncation_length = 3
 truncate_to_repo = true
+fish_style_pwd_dir_length = 1 # Shorten parent dirs to 1 char (e.g. ~/w/p/project)
 
-# 🔀 GIT BRANCH
+# 🔀 GIT
 [git_branch]
 symbol = " "
-format = "[$symbol$branch]($style) "
 style = "fg:#7b8496"
 
-# 🔄 GIT STATUS + STATE + METRICS
 [git_status]
+# 🔋 Battery: Simplified status is faster than complex metrics
 format = '([\[$all_status$ahead_behind\]]($style))'
 style = "fg:#4ed7e4"
 
-[git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "fg:#5e6777"
-
 [git_metrics]
-disabled = false
+disabled = true # 🔋 Performance: Calculating +/- lines is expensive
 
 # 💬 CMD DURATION
 [cmd_duration]
-format = "transcending [$duration]($style)"
+min_time = 2000 # Only show if command took more than 2 seconds
+format = "took [$duration]($style) "
 style = "fg:#f1ff5e"
-disabled = false             # keep visible to know slow commands
 
-# 💥 STATUS
-[status]
-format = '[✗ $status](bold red) '
-success_symbol = ''
-map_symbol = false
-
-# 🧠 JOBS
-[jobs]
-symbol = ""
-style = "bold fg:#ff6e5e"
-number_threshold = 1
-format = "[$symbol $number]($style)"   # added number display for clarity
-
-# 🕒 TIME
-[time]
-disabled = false
-style = "bold white"
-format = "[$time]($style)"
-
-# 💻 PROGRAMMING LANGUAGES
+# 💻 LANGUAGES
+# Productivity: Set 'always_binary' to false so they only show
+# if you're actually in a project of that type.
 [nodejs]
-format = "[$symbol($version )]($style)"
+format = "via [$symbol($version )]($style)"
 style = "fg:#4ed7e4"
-
-[c]
-format = "[$symbol($version )]($style)"
-style = "fg:#478de0"
+detect_files = ["package.json"] # Only scan for this specific file
 
 [python]
-format = "[$symbol($version )]($style)"
+format = "via [$symbol($version )]($style)"
 style = "fg:#d7e44e"
+pyenv_prefix = "venv "
 
-[swift]
-format = "[$symbol($version )]($style)"
-style = "fg:#ffbd5e"
+[rust]
+symbol = "🦀 "
+style = "fg:#ff4c1f"
 
-[ruby]
-format = "[$symbol($version )]($style)"
-style = "fg:#ff5a4a"
-
-[java]
-format = "[$symbol($version )]($style)"
-style = "fg:#a84ae0"
-
-[php]
-format = "[$symbol($version )]($style)"
-style = "fg:#ff9abe"
-
-[golang]
-format = "[$symbol($version )]($style)"
-style = "fg:#4ae05c"
-
-[package]
-format = "[$symbol($version )]($style)"
-style = "fg:#5eff6c"
-
-# 💠 CHARACTER SYMBOLS
+# 🧠 CHARACTER (The actual prompt icon)
 [character]
-success_symbol = "[❯](fg:#5eff6c) "
-error_symbol = "[✖](bold red) "
-vicmd_symbol = "[◆](green) "
-
-# ⚡ CUSTOM DEV BANNER (when in Git repo)
-[custom.dev]
-command = "echo '🚧 Dev Mode'"
-when = 'test -d .git'
-style = "bold fg:#ffbd5e"
-
+success_symbol = "[󰄛 ](bold #be95ff)" # A magical cat icon
+error_symbol = "[󰄛 ](bold #ff5e5e)"
