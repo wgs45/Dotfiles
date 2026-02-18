@@ -3,7 +3,7 @@ return {
     branch = "v3.x",
     cmd = "Neotree",
     keys = {
-        -- ✨ Productivity: Faster toggle
+        -- ✨Faster toggle
         { "<leader>e", "<cmd>Neotree toggle current reveal_force_cwd<cr>", desc = "Toggle NeoTree (cwd)" },
         { "<leader>E", "<cmd>Neotree toggle float reveal_force_cwd<cr>", desc = "Floating NeoTree" },
     },
@@ -11,7 +11,7 @@ return {
         -- 🔋 Performance: Close to save memory
         close_if_last_window = true,
 
-        -- 🛠️ Refactoring: Show exactly what is happening in Git/LSP
+        -- 🛠️ Show exactly what is happening in Git/LSP
         enable_git_status = true,
         enable_diagnostics = true,
 
@@ -31,7 +31,6 @@ return {
                 with_markers = true,
                 indent_marker = "│",
             },
-            -- 🎨 Consistency: Matches your statuscolumn setup
             git_status = {
                 symbols = {
                     added = "✚",

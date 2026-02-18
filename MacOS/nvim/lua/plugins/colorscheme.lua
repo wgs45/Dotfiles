@@ -16,9 +16,9 @@ return {
                 functions = { bold = true },
             },
             on_colors = function(colors)
-                colors.bg = "#121318" -- Deep dark for focus
-                colors.bg_statusline = "#1e1e2e" -- Defined statusline boundary
-                colors.selection = "#3c4048" -- Slightly bumped contrast for productivity
+                colors.bg = "#121318"
+                colors.bg_statusline = "#1e1e2e"
+                colors.selection = "#3c4048"
             end,
         },
     },

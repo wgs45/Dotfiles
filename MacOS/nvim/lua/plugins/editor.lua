@@ -24,7 +24,6 @@ return {
                     -- Highlight hex colors (e.g. #abb2bf)
                     hex_color = hipatterns.gen_highlighter.hex_color(),
 
-                    -- 📝 Improved Comment Keywords (Replacement for todo-comments)
                     fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "DiagnosticError" },
                     todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "DiagnosticInfo" },
                     hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "DiagnosticWarn" },
@@ -45,7 +44,6 @@ return {
         },
     },
 
-    -- 🔭 Telescope: Simplified and optimized
     {
         "telescope.nvim",
         dependencies = {

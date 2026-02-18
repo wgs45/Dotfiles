@@ -32,8 +32,17 @@ return {
         end,
     },
 
-    -- icons
-    { "nvim-tree/nvim-web-devicons", lazy = true },
+    -- ╭──────────────────────────────────────────────────────────╮
+    -- │          Icons: Web Devicons (The "Pop" Factor)          │
+    -- ╰──────────────────────────────────────────────────────────╯
+    {
+        "nvim-tree/nvim-web-devicons",
+        lazy = false, -- 🚀 Set to false to ensure icons load immediately
+        opts = {
+            color_icons = true,
+            default = true,
+        },
+    },
 
     -- notify
     {
@@ -92,23 +101,61 @@ return {
             config = function()
                 require("incline").setup()
             end,
-            -- Optional: Lazy load Incline
             event = "VeryLazy",
         },
     },
 
     -- ╭──────────────────────────────────────────────────────────╮
-    -- │          Lualine: Optimized Statusline                   │
+    -- │          Lualine: Optimized & Developer Focused          │
     -- ╰──────────────────────────────────────────────────────────╯
     {
         "nvim-lualine/lualine.nvim",
-        opts = function(_, opts)
-            opts.options = vim.tbl_deep_extend("force", opts.options or {}, {
-                theme = "cyberdream",
-                globalstatus = true, -- Better performance: one statusline for all windows
-                component_separators = "|",
-                section_separators = "",
-            })
+        event = "VeryLazy",
+        opts = function()
+            return {
+                options = {
+                    theme = "cyberdream",
+                    globalstatus = true,
+                    transparent = true,
+                    component_separators = { left = "｜", right = "｜" },
+                    section_separators = { left = "", right = "" },
+                    disabled_filetypes = {
+                        statusline = { "dashboard", "alpha", "starter" },
+                    },
+                },
+                sections = {
+                    lualine_a = {
+                        {
+                            "mode",
+                            fmt = function(str)
+                                return str:sub(1, 1)
+                            end,
+                        },
+                    },
+                    lualine_b = { "branch" },
+                    lualine_c = {
+                        -- 🛠️ Productivity: Diagnostics on the left (Default style)
+                        { "diagnostics", symbols = { error = " ", warn = " ", info = " ", hint = " " } },
+                        { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+                        { "filename", path = 1 },
+                    },
+                    lualine_x = { "diff" },
+                    lualine_y = {
+                        {
+                            function()
+                                local clients = vim.lsp.get_clients({ bufnr = 0 })
+                                local lsp_name = next(clients) ~= nil and clients[1].name or "No LSP"
+                                local line = vim.fn.line(".")
+                                local col = vim.fn.virtcol(".")
+                                return string.format("󰄛 %s │ 󰉸 %d:%d", lsp_name, line, col)
+                            end,
+                        },
+                    },
+                    lualine_z = {
+                        { "progress", color = { gui = "bold" } },
+                    },
+                },
+            }
         end,
     },
 }
