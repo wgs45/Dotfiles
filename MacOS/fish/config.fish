@@ -17,6 +17,7 @@ abbr -a bat 'bat --color=always'
 abbr -a ff "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 abbr -a vim nvim
 abbr -a pn pnpm
+abbr -a ss snitch
 
 # Git (High Productivity)
 abbr -a g git
