@@ -3,105 +3,106 @@
   "logo": {
     "type": "kitty-direct",
     "source": "~/.config/fastfetch/saekano.png",
+    "width": 32,
     "padding": {
-      "right": 0,
-      "top": 3,
+      "right": 3,
+      "top": 2,
     },
   },
   "display": {
-    "separator": "➜   ",
+    "separator": " ➜  ",
+    "key": {
+      "width": 18,
+    },
   },
   "modules": [
-    "break",
+    // --- TITLE ---
+    {
+      "type": "title",
+      "format": "{user-name-colored}@{host-name-colored}",
+      "color": {
+        "user": "magenta",
+        "at": "bright_black",
+        "host": "magenta",
+      },
+    },
+
+    // --- SYSTEM SECTION ---
     {
       "type": "custom",
-      "format": "┌───────────────────────────── System Information ─────────────────────────────┐", // `\u001b` is `\033`, or `\e`
+      "format": "─── \u001b[1mSystem Information\u001b[0m ───────────────",
+      "color": "bright_black",
     },
-    "break",
+    { "key": "󰘵 OS", "type": "os", "format": "{3}", "keyColor": "magenta" },
     {
-      "key": "    󰘵 OS           ",
-      "keyColor": "magenta",
-      "type": "os",
-    },
-    {
-      "key": "    󰌢 Machine      ",
-      "keyColor": "bright_blue",
+      "key": "󰌢 Machine",
       "type": "host",
+      "keyColor": "bright_blue",
     },
     {
-      "key": "     Kernel       ",
-      "keyColor": "cyan",
+      "key": " Kernel",
       "type": "kernel",
+      "format": "{2}",
+      "keyColor": "cyan",
     },
     {
-      "key": "     Packages     ",
-      "keyColor": "bright_red",
+      "key": " Packages",
       "type": "packages",
-    },
-    "break",
-    {
-      "type": "custom",
-      "format": " ────────────────────────────── Wayland Information ─────────────────────────── ", // `\u001b` is `\033`, or `\e`
-    },
-    "break",
-    {
-      "key": "     WM           ",
-      "keyColor": "yellow",
-      "type": "wm",
+      "keyColor": "bright_red",
     },
     {
-      "key": "    󰚗 DE           ",
-      "keyColor": "bright_yellow",
-      "type": "de",
-    },
-    {
-      "key": "     Shell        ",
-      "keyColor": "bright_green",
+      "key": " Shell",
       "type": "shell",
+      "format": "{1} {4}",
+      "keyColor": "yellow",
     },
-    {
-      "key": "     Terminal     ",
-      "keyColor": "bright_magenta",
-      "type": "terminal",
-    },
-    "break",
+
+    // --- WAYLAND SECTION ---
     {
       "type": "custom",
-      "format": " ────────────────────────────── Hardware Information ────────────────────────── ", // `\u001b` is `\033`, or `\e`
+      "format": "─── \u001b[1mWayland Information\u001b[0m ──────────────",
     },
-    "break",
+    { "key": " WM", "type": "wm", "keyColor": "yellow" },
+    { "key": "󰚗 DE", "type": "de", "keyColor": "bright_yellow" },
+    { "key": "󰔎 Theme", "type": "theme", "keyColor": "bright_magenta" },
+    { "key": "󰀻 Font", "type": "terminalfont", "keyColor": "bright_blue" },
     {
-      "key": "     Display      ",
-      "keyColor": "bright_cyan",
+      "key": " Display",
       "type": "display",
+      "compactType": "scaled-with-refresh-rate",
+      "format": "{1}x{2} @ {3}Hz [{10}]",
+      "keyColor": "bright_cyan",
     },
-    {
-      "key": "    󰻠 CPU          ",
-      "keyColor": "green",
-      "type": "cpu",
-    },
-    {
-      "key": "    󰍛 GPU          ",
-      "keyColor": "blue",
-      "type": "gpu",
-    },
-    {
-      "key": "    󰑭 Memory       ",
-      "keyColor": "red",
-      "type": "memory",
-    },
-    "break",
+
+    // --- DEVOPS & NETWORK ---
     {
       "type": "custom",
-      "format": "└──────────────────────────────────────────────────────────────────────────────┘", // `\u001b` is `\033`, or `\e`
+      "format": "─── \u001b[1mDevOps & Network\u001b[0m ─────────────────",
     },
+    { "key": "󰖟 Local IP", "type": "localip", "keyColor": "blue" },
+    { "key": "󰩟 Public IP", "type": "publicip", "keyColor": "blue" },
+    {
+      "key": "󰓡 Swap",
+      "type": "swap",
+
+      "keyColor": "cyan",
+    },
+    {
+      "key": "󰍛 Memory",
+      "type": "memory",
+      "keyColor": "red",
+    },
+    { "key": "󰔚 Uptime", "type": "uptime", "keyColor": "green" },
+
+    {
+      "type": "custom",
+      "format": "──────────────────────────────────────────",
+    },
+    "break",
     {
       "type": "colors",
-      "paddingLeft": 34,
       "symbol": "circle",
-      "block": {
-        "width": 10,
-      },
+      "paddingLeft": 2,
     },
   ],
 }
