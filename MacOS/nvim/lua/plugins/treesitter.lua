@@ -11,7 +11,8 @@ return {
         opts = {
             highlight = { enable = true },
             indent = { enable = true },
-            -- 🔋 Battery: Only the essentials
+            sync_install = false,
+            auto_install = false,
             ensure_installed = {
                 "bash",
                 "c",
@@ -24,6 +25,7 @@ return {
                 "javascript",
                 "jsdoc",
                 "json",
+                "latex",
                 "lua",
                 "markdown",
                 "markdown_inline",
@@ -35,7 +37,6 @@ return {
                 "typescript",
                 "yaml",
             },
-            -- ✨ Productivity: Fast visual selection
             incremental_selection = {
                 enable = true,
                 keymaps = {

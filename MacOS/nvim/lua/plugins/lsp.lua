@@ -32,6 +32,8 @@ return {
                         },
                     },
                 },
+                marksman = {},
+                texlab = {},
                 ts_ls = {},
                 pylsp = {},
                 tailwindcss = {},

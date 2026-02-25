@@ -25,6 +25,7 @@ opt.mouse = "a" -- Enable mouse support for quick resizing/scrolling
 opt.virtualedit = "block" -- Allow cursor to move past end of line in visual block
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.completeopt = "menuone,noselect" -- Better completion experience
+opt.conceallevel = 2 -- 0 = show everything, 2 = hide code to show symbols
 
 -- ✨ Visual Aesthetics
 opt.termguicolors = true -- Enable true color
