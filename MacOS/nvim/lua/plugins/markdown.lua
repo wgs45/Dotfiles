@@ -3,11 +3,8 @@ return {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown", "quarto" },
         opts = {
-
             debounce = 500,
-
             max_file_size = 1.5,
-
             render_modes = { "n", "c" },
 
             heading = {
@@ -33,7 +30,6 @@ return {
                 ignore = { "code_background", "sign" },
             },
 
-            -- 🎨 Vibrant Visuals
             pipe_table = { preset = "round", style = "full" },
             callout = {
                 note = { raw = "[!NOTE]", rendered = "󰋽 Note", highlight = "RenderMarkdownInfo" },

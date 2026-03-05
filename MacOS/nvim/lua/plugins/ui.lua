@@ -134,7 +134,6 @@ return {
                     },
                     lualine_b = { "branch" },
                     lualine_c = {
-                        -- 🛠️ Productivity: Diagnostics on the left (Default style)
                         { "diagnostics", symbols = { error = " ", warn = " ", info = " ", hint = " " } },
                         { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
                         { "filename", path = 1 },
@@ -144,15 +143,26 @@ return {
                         {
                             function()
                                 local clients = vim.lsp.get_clients({ bufnr = 0 })
-                                local lsp_name = next(clients) ~= nil and clients[1].name or "No LSP"
-                                local line = vim.fn.line(".")
-                                local col = vim.fn.virtcol(".")
-                                return string.format("󰄛 %s │ 󰉸 %d:%d", lsp_name, line, col)
+                                local pos = string.format("󰉸 %d:%d", vim.fn.line("."), vim.fn.virtcol("."))
+
+                                if #clients == 0 then
+                                    return "󱐋 No LSP │ " .. pos
+                                end
+
+                                local primary_lsp = clients[1].name
+                                return "󰄛 " .. primary_lsp .. " │ " .. pos
+                            end,
+                            color = function()
+                                local clients = vim.lsp.get_clients({ bufnr = 0 })
+
+                                if #clients == 0 then
+                                    return { fg = "#ff5555" }
+                                end
                             end,
                         },
                     },
                     lualine_z = {
-                        { "progress", color = { gui = "bold" } },
+                        { "progress" },
                     },
                 },
             }

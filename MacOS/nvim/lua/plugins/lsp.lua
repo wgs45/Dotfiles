@@ -35,7 +35,17 @@ return {
                 marksman = {},
                 texlab = {},
                 ts_ls = {},
-                pylsp = {},
+                pylsp = {
+                    plugins = {
+                        pyflakes = { enabled = true },
+                        mccabe = { enabled = false },
+                        pycodestyle = {
+                            enabled = true,
+                            ignore = { "W391" },
+                            maxLineLength = 120,
+                        },
+                    },
+                },
                 tailwindcss = {},
                 html = {},
                 cssls = {},
@@ -91,6 +101,8 @@ return {
 
             mlsp.setup({
                 ensure_installed = opts.ensure_installed,
+                -- THIS LINE: It forces Mason to prepend its binaries to your PATH
+                PATH = "prepend",
                 handlers = {
                     function(server_name)
                         local server_opts = vim.tbl_deep_extend("force", {
