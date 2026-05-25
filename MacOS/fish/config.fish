@@ -31,7 +31,7 @@ abbr -a rp rip
 abbr -a rpu 'rip -u'
 
 # 🔋 Battery Tip: Transient Prompt
-# This keeps your terminal history extremely clean.
+# This keeps terminal history extremely clean.
 # It hides the heavy Starship prompt on old lines.
 function starship_transient_prompt_func
     starship module character
