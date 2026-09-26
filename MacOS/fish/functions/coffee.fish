@@ -22,7 +22,7 @@ function coffee --description 'Netrunner ICE-Breaker: Block system sleep cycles'
     echo ""
 
     # Execute caffeinate in the foreground so Ctrl+C works instantly
-    caffeinate -t $secs
+    caffeinate -d -t $secs
 
     # Session Finish UI
     printf "\e[?25h" # Restore cursor safely
