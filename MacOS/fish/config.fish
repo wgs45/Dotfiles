@@ -27,9 +27,9 @@ abbr -a gp 'git push'
 abbr -a gst 'git status'
 
 # DB alias (Multiple Databases)
-abbr -a mongodb-start "brew services start mongodb-community"
-abbr -a mysql-start "brew services start mysql"
-abbr -a pgsql-start "brew services start postgresql@18"
+abbr -a run-mongodb "brew services start mongodb-community"
+abbr -a run-mysql "brew services start mysql"
+abbr -a run-pgsql "brew services start postgresql@18"
 abbr -a db-status "brew services list"
 # Stop all dataabases at once
 abbr -a db-stop "brew services stop mysql && brew services stop postgresql@14 && brew services stop mongodb-community"
