@@ -1,0 +1,150 @@
+# --[ Basic Configuration ] -------------------------------------------------------------- {{{
+term xterm-kitty
+enable_image_display yes
+enable_graphics yes
+# }}}
+
+# Keymaps
+# New tabs = ctrl + shift + t (Command + t on MacOS)
+# Close tabs = ctrl + shift + q (Command + w on MacOS)
+# Next tabs = ctrl + shift + right (Up + Command + ] on MacOS)
+# Previous tabs = ctrl + shift + left (Up + command + [ on MacOS)
+
+# --[ Fonts ] -------------------------------------------------------------- {{{
+# BEGIN_KITTY_FONTS
+font_family      family="JetBrainsMono Nerd Font Mono"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size 12
+enable_harfbuzz_substitution yes
+# END_KITTY_FONTS
+# }}}
+
+# --[ Hyperlink ] -------------------------------------------------------------- {{{
+detect_urls yes
+underline_hyperlinks hover
+url_style straight
+
+# The color for highlighting URLs on mouse-over
+url_color #7aa2f7
+paste_actions quote-urls-at-prompt
+strip_trailing_spaces never
+select_by_word_characters @-./_~?&=%+#
+# }}}
+
+# --[ windows ] ------------------------------------------------------------ {{{
+remember_window_size yes
+# Change to "No" then "Yes" after changing changing the initial window width & height
+
+# Built in internal monitor (13 inch)
+# initial_window_width  175c
+# initial_window_height 50c
+
+# External Monitor (27 inch)
+initial_window_width 222c
+initial_window_height 53c
+enabled_layouts tall,stack
+tab_bar_edge top
+window_border_width 1pt
+visual_window_select_characters 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ
+window_resize_step_cells 2
+window_resize_step_lines 2
+hide_window_decorations no
+window_padding_width 5
+# }}}
+
+# --[ Background ] -------------------------------------------------------------- {{{
+# background_opacity 0.75
+background_opacity 0.8
+dynamic_background_opacity yes
+
+# Anime wallpaper
+# background_image ~/.config/kitty/kasumigaoka_utaha.png
+# background_image_layout scaled
+# background_image_linear yes
+
+# }}}
+
+# --[ mouse ] -------------------------------------------------------------- {{{
+copy_on_select                  yes
+scrollback_lines                2000
+scrollback_pager_history_size 1000
+scrollback_pager_background_opacity 0.9
+scrollbar_gap 0.5
+scrollbar_handle_opacity 0.2
+scrollbar_hover_width 0.5
+
+# The modifiers to use rectangular selection (i.e. to select text in a
+# rectangular block with the mouse)
+# rectangle_select_modifiers ctrl+alt
+mouse_hide_wait                 15
+
+# Set the active window to the window under the mouse when moving the mouse around
+focus_follows_mouse             no
+disable_ligatures               cursor
+force_ltr yes
+# }}}
+
+# --[ gpu ] ------------------------------------------------------------- {{{
+input_delay 2
+sync_to_monitor yes
+repaint_delay 16
+# }}}
+
+# --[ title bar ] ------------------------------------------------------------- {{{
+hide_window_decorations titlebar-only
+# }}}
+
+# --[ cursor ] ------------------------------------------------------------- {{{
+pointer_shape_when_dragging hand
+default_pointer_shape beam
+pointer_shape_when_dragging beam
+cursor_shape underline
+cursor_shape_unfocused hollow
+cursor_underline_thickness 2.0
+cursor_blink_interval -1 ease-in-out
+cursor_stop_blinking_after 3.0
+
+# Animated Cursor (Added in v0.49)
+cursor_trail 1
+custom_shaders cursor-trail-motion-blur tab-change focus-highlight
+
+# }}}
+
+# --[ Tab Bar Styling ] ---------------------------------------------------
+
+tab_bar_edge            top
+tab_bar_style           separator
+tab_bar_margin_width    6
+tab_bar_margin_height   6 0
+tab_bar_min_tabs        1
+tab_separator           ""
+
+# Active Tab
+active_tab_title_template "{fmt.fg._FCEE0A}{fmt.bg.default}{fmt.fg._000000}{fmt.bg._FCEE0A} 󰞷 NET//{index}  {title[:14]} {fmt.fg._FCEE0A}{fmt.bg.default}"
+
+# Inactive Tab
+tab_title_template "{fmt.fg._1a1a24}{fmt.bg.default}{fmt.fg._00F0FF}{fmt.bg._1a1a24}  {index} {fmt.fg._565f89} {fmt.fg._c0caf5}{title[:12]} {fmt.fg._1a1a24}{fmt.bg.default}"
+
+active_tab_font_style   bold
+inactive_tab_font_style normal
+tab_bar_background      none
+#}}}
+
+# --[ OS Configuration ] --------------------------------------------------------------- {{{
+# macos_titlebar_color system
+macos_window_resizable no
+macos_show_window_title_in none
+# macos_menubar_title_max_length 10
+macos_quit_when_last_window_closed yes
+# Values is either default, displayp or srgb
+macos_colorspace displayp3
+# }}}
+
+allow_remote_control            yes
+
+# --[ Map configuration ] --------------------------------------------------------------- {{{
+globinclude maps.conf
+# }}}
+
