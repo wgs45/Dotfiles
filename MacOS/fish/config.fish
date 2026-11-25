@@ -2,6 +2,7 @@
 # Ensure TERM is set correctly for Kitty's advanced features (like images)
 set -gx TERM xterm-kitty
 set -gx EDITOR nvim
+set -gx STARSHIP_CONFIG ~/.config/starship/starship.toml
 
 starship init fish | source
 zoxide init fish | source
@@ -38,7 +39,17 @@ abbr -a db-stop "brew services stop mysql && brew services stop postgresql@14 &&
 abbr -a rp rip
 abbr -a rpu 'rip -u'
 
-# 🔋 Battery Tip: Transient Prompt
+# Android SDK & Java
+set -gx ANDROID_HOME $HOME/Library/Android/sdk
+set -gx JAVA_HOME "/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+
+# Add tools to PATH
+fish_add_path $JAVA_HOME/bin
+fish_add_path $ANDROID_HOME/emulator
+fish_add_path $ANDROID_HOME/platform-tools
+fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
+
+# Transient Prompt
 # This keeps terminal history extremely clean.
 # It hides the heavy Starship prompt on old lines.
 function starship_transient_prompt_func
