@@ -143,5 +143,5 @@ disabled = false # Reads local kubeconfig only; set to true if you don't use k8s
 
 # 🧠 CHARACTER (The actual prompt icon)
 [character]
-success_symbol = "[󰄛 ](bold #D8B4FE)" # A magical cat icon
-error_symbol = "[󰄛 ](bold #FF2A6D)"
+success_symbol = "[󰄛](bold #D8B4FE)" # A magical cat icon
+error_symbol = "[󰄛](bold #FF2A6D)"
