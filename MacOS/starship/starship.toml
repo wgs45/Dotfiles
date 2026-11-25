@@ -1,6 +1,7 @@
 # 🚀 Global Settings
 # A lower timeout prevents the shell from "hanging" in slow network drives
 scan_timeout = 10
+command_timeout = 100 # Kills any slow version check after 200ms
 add_newline = true
 
 # 🎨 Layout
@@ -18,54 +19,129 @@ $rust\
 $golang\
 $php\
 $c\
+$gradle\
+$kotlin\
+$package\
+$docker_context\
+$kubernetes\
 $cmd_duration $status $time\
 $line_break\
 $character"""
 
 # 📁 DIRECTORY
 [directory]
-style = "bold fg:#5ea1ff"
+style = "bold fg:#00E5FF"
 truncation_length = 3
 truncate_to_repo = true
 fish_style_pwd_dir_length = 1 # Shorten parent dirs to 1 char (e.g. ~/w/p/project)
+read_only = "  " # Shows a lock icon in read-only system folders
+read_only_style = "bold fg:#FF2A6D"
 
 # 🔀 GIT
 [git_branch]
 symbol = " "
-style = "fg:#7b8496"
+style = "bold fg:#FF6AC1"
 
 [git_status]
-# 🔋 Battery: Simplified status is faster than complex metrics
-format = '([\[$all_status$ahead_behind\]]($style))'
-style = "fg:#4ed7e4"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold fg:#05FFA1"
+conflicted = ""
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+stashed = ""
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
 
 [git_metrics]
-disabled = true # 🔋 Performance: Calculating +/- lines is expensive
+disabled = true # Calculating +/- lines is expensive
 
-# 💬 CMD DURATION
+# 💬 CMD DURATION & STATUS & TIME
 [cmd_duration]
-min_time = 2000 # Only show if command took more than 2 seconds
+min_time = 2000
 format = "took [$duration]($style) "
-style = "fg:#f1ff5e"
+style = "bold fg:#FFE600" # Laser Yellow
+
+[status]
+disabled = false
+symbol = "✖ "
+format = '[$symbol$status]($style) '
+style = "bold fg:#FF2A6D" # Neon Crimson
 
 # 💻 LANGUAGES
-# Productivity: Set 'always_binary' to false so they only show
+# Set 'always_binary' to false so they only show
 # if you're actually in a project of that type.
+
 [nodejs]
+symbol = " "
 format = "via [$symbol($version )]($style)"
-style = "fg:#4ed7e4"
-detect_files = ["package.json"] # Only scan for this specific file
+style = "bold fg:#39FF14"
+detect_files = ["package.json"]
+detect_extensions = [] # Prevents scanning .js/.ts files in huge web repos
 
 [python]
+symbol = " "
 format = "via [$symbol($version )]($style)"
-style = "fg:#d7e44e"
+style = "bold fg:#FFE600"
 pyenv_prefix = "venv "
+detect_extensions = [] # Relies on pyproject.toml, requirements.txt, .venv, etc.
+
+[golang]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold fg:#00F5D4"
+detect_files = ["go.mod", "go.sum"]
+detect_extensions = [] # Skips scanning .go files
 
 [rust]
 symbol = "🦀 "
-style = "fg:#ff4c1f"
+style = "bold fg:#FF5E1A"
+
+[c]
+symbol = " "
+format = "via [$symbol($version(-$name) )]($style)"
+style = "bold fg:#38BDF8"
+detect_files = ["CMakeLists.txt", "Makefile"]
+detect_extensions = ["cpp", "cc", "cxx", "hpp", "c", "h"]
+
+[gradle]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold fg:#00F5D4"
+detect_files = ["build.gradle", "build.gradle.kts", "settings.gradle", "settings.gradle.kts"]
+detect_extensions = [] # Prevents scanning every file extension
+recursive = false      # Stops walking parent directories unnecessarily
+
+[kotlin]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold fg:#C77DFF"
+detect_files = ["build.gradle.kts"] # Avoids scanning every .kt source file
+detect_extensions = []              # Prevents scanning every file extension
+
+[package]
+symbol = "󰏗 "
+format = "is [$symbol$version]($style) "
+style = "bold fg:#FF9E00"
+display_private = true # Shows version even when "private": true in package.json
+
+[docker_context]
+symbol = " "
+format = "via [$symbol$context]($style) "
+style = "bold fg:#00BBF9"
+only_with_files = true # Only shows when Dockerfile/compose is in the folder
+detect_files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml"]
+
+[kubernetes]
+symbol = " "
+format = 'on [$symbol$context( \($namespace\))]($style) '
+style = "bold fg:#00F5D4"
+disabled = false # Reads local kubeconfig only; set to true if you don't use k8s
 
 # 🧠 CHARACTER (The actual prompt icon)
 [character]
-success_symbol = "[󰄛 ](bold #be95ff)" # A magical cat icon
-error_symbol = "[󰄛 ](bold #ff5e5e)"
+success_symbol = "[󰄛 ](bold #D8B4FE)" # A magical cat icon
+error_symbol = "[󰄛 ](bold #FF2A6D)"
