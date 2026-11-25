@@ -87,7 +87,7 @@ symbol = " "
 format = "via [$symbol($version )]($style)"
 style = "bold fg:#FFE600"
 pyenv_prefix = "venv "
-detect_extensions = [] # Relies on pyproject.toml, requirements.txt, .venv, etc.
+detect_extensions = ["py"]
 
 [golang]
 symbol = " "
@@ -97,7 +97,7 @@ detect_files = ["go.mod", "go.sum"]
 detect_extensions = [] # Skips scanning .go files
 
 [rust]
-symbol = "🦀 "
+symbol = " "
 style = "bold fg:#FF5E1A"
 
 [c]
