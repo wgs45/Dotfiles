@@ -24,6 +24,7 @@ $kotlin\
 $package\
 $docker_context\
 $kubernetes\
+$terraform\
 $cmd_duration $status $time\
 $line_break\
 $character"""
@@ -139,7 +140,15 @@ detect_files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml", "comp
 symbol = " "
 format = 'on [$symbol$context( \($namespace\))]($style) '
 style = "bold fg:#00F5D4"
-disabled = false # Reads local kubeconfig only; set to true if you don't use k8s
+disabled = false # Reads local kubeconfig only; set to true if don't use k8s
+
+[terraform]
+symbol = " "
+format = "via [$symbol$workspace]($style) "
+style = "bold fg:#A855F7"
+detect_files = ["main.tf", "terraform.tf", "versions.tf"]
+detect_extensions = [] # Skips scanning every .tf file in large infra repos
+detect_folders = [".terraform"]
 
 # 🧠 CHARACTER (The actual prompt icon)
 [character]
