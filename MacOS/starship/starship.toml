@@ -9,12 +9,14 @@ add_newline = true
 format = """
 $username\
 $hostname\
+$container\
 $directory\
 $git_branch\
 $git_state\
 $git_status\
 $python\
 $nodejs\
+$bun\
 $rust\
 $golang\
 $php\
@@ -83,6 +85,13 @@ style = "bold fg:#39FF14"
 detect_files = ["package.json"]
 detect_extensions = [] # Prevents scanning .js/.ts files in huge web repos
 
+[bun]
+symbol = " " # Bun Nerd Font icon
+format = "via [$symbol($version )]($style)"
+style = "bold fg:#FF70A6"
+detect_files = ["bun.lock", "bun.lockb", "bunfig.toml"]
+detect_extensions = [] # Only triggers in actual Bun projects, not Node repos
+
 [python]
 symbol = " "
 format = "via [$symbol($version )]($style)"
@@ -128,6 +137,12 @@ symbol = "󰏗 "
 format = "is [$symbol$version]($style) "
 style = "bold fg:#FF9E00"
 display_private = true # Shows version even when "private": true in package.json
+
+[container]
+symbol = " "
+format = "[$symbol\\[$name\\]]($style) "
+style = "bold fg:#FF2A6D"
+disabled = false
 
 [docker_context]
 symbol = " "
